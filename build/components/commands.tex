@@ -1,5 +1,4 @@
-% dhgefigure -> ...
-\DeclareDocumentCommand{\dhgefigure}{O{tbp} m O{width=\textwidth} m m O{} O{}}
+\DeclareDocumentCommand{\dhgefigure}{O{tbp} m O{width=\textwidth, angle=0} m m O{} O{}}
 {
     \begin{figure}[#1]
         \begin{center}
@@ -11,7 +10,7 @@
         \ifx #6\empty \else
             \ifx #7\empty
                 {\small \protect \textbf{Quelle:} \cite{#6}}
-            \else
+                \else
                 {\small \protect \textbf{Quelle:} \cite[#7]{#6}}
             \fi
         \fi
@@ -20,7 +19,7 @@
 }
 
 % SubSubSubSection
-\newcommand{\dhgeparagraph}[1]{\paragraph{#1}\mbox{}\\\vspace{-1.5em}}
+\newcommand{\dhgeparagraph}[1]{\paragraph{#1}\mbox{}\\}
 
 % Doppelte Unterstreichung
 \newcommand{\doubleunderline}[1]{

@@ -1,0 +1,42 @@
+\appendix
+\appendixtitleoff
+
+\newcounter{anlagecounter}
+\newcounter{anlagenentrycounter}[anlagecounter] % Define a new counter for anlagenEntryCounter, tied to anlageCounter
+
+\renewcommand{\theanlagecounter}{\arabic{anlagecounter}}
+\renewcommand{\theanlagenentrycounter}{\number\value{anlagecounter}\detokenize{.}\arabic{anlagenentrycounter}}
+
+
+\newcommand{\anlage}[1]{
+    \refstepcounter{anlagecounter} % Increment the counter and set the label
+    \setcounter{anlagenentrycounter}{0} % Reset anlageContentCounter for each anlage
+
+    \ifnum\value{anlagecounter}>1
+        \newpage
+        \clearpage
+    \fi
+
+    \subsection*{Anlage \theanlagecounter: #1}
+    \addcontentsline{toc}{subsection}{Anlage \theanlagecounter: #1}
+}
+
+\newcommand{\anlagenEntry} {
+    \refstepcounter{anlagenentrycounter}
+}
+
+% name everything to 'anlage'
+\renewcommand{\lstlistingname}{Anlage}
+\renewcommand{\figurename}{Anlage}
+
+% correctly show the numbers in the appendix
+\renewcommand{\thelstlisting}{\theanlagenentrycounter}
+\renewcommand{\thefigure}{\theanlagenentrycounter}
+
+% HIER GEHT ES LOS
+\anlage{Name}\label{...}
+\anlagenEntry
+\dhgefigure[H]{...}{...}{...}
+
+\anlagenEntry
+\lstinputlisting[caption=..., language=...]{assets/code_beispiele/...}\label{...}

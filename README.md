@@ -42,10 +42,11 @@ Inoffizielles LaTeX-Template für Projektarbeiten für Technik-Studiengänge an 
 # Installation
 
 ## LaTeX Installation
+
 Eine Installation von MikTeX über [proTeXt](https://www.tug.org/protext/) wird empfohlen.
 Als Editor bieten sich beispielsweise [Visual Studio Code](https://code.visualstudio.com/) in Kombination mit der [latex-workshop](https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop) Extension oder alternativ [TeXstudio](https://www.texstudio.org/) an.
 
->Bei einer bereits bestehenden Installation sollten die installierten Packages auf Updates überprüft werden. Andererseits kann es zu Problemen beim Bauen kommen.
+> Bei einer bereits bestehenden Installation sollten die installierten Packages auf Updates überprüft werden. Andererseits kann es zu Problemen beim Bauen kommen.
 
 ### Perl
 
@@ -54,7 +55,7 @@ Nutzer von macOS und Linux haben meistens schon ein vorinstalliertes Perl.
 
 **Überprüfung einer Installation**
 
-Wenn man herausfinden möchte, ob man bereits ein funktionierendes Perl hat oder die unten genannte Installation erfolgreich verlief, kann man in einer Kommandozeile (Terminal) seiner Wahl ``perl -v`` ausführen.
+Wenn man herausfinden möchte, ob man bereits ein funktionierendes Perl hat oder die unten genannte Installation erfolgreich verlief, kann man in einer Kommandozeile (Terminal) seiner Wahl `perl -v` ausführen.
 Ist Perl korrekt installiert, wird die Version ausgegeben:
 
 ![Perl ist unter Windows korrekt installiert](assets/readme/perl-windows.jpg)
@@ -104,7 +105,9 @@ Die Einstellungen für die Erweiterung findet man am Ende der Einstellungen von 
 # Latex Tipps
 
 <!-- todo: add more -->
+
 Ein relativ simples [LaTeX-Tutorial](https://www.latex-tutorial.com/tutorials/first-document/) zum einfachen Einstieg in die Welt von TeX.
+
 > _ist allerdings durch das Template nicht nötig, nachfolgendes sollte ausreichen_
 
 Für einen Einstieg in das wissenschaftliche Schreiben an sich bietet sich ein Artikel von Sebastian Hahner an, der ebenfalls auf LaTeX eingeht: [Wissenschaftliches Schreiben Schnelleinstieg](https://github.com/sebinside/WissenschaftlichesSchreiben-Schnelleinstieg)
@@ -126,6 +129,7 @@ Der `\def` Befehl definiert ein Command der letztendlich Folgendem entspricht:
 Richtig werden diese "Variablen" dann durch `\<variablenName>`**`{}`** aufgerufen.
 
 Alternativ ist aber auch möglich, sie durch `\<variablenName>` aufzurufen.\
+
 > Hier ist zu beachten, dass nach der Variable das Leerzeichen fehlen wird, da dieses als Argument des Befehls aufgenommen wird
 
 ## Environment (Umgebung)
@@ -153,7 +157,7 @@ Für Fließtext wird Palatino, ein für LaTeX optimierter Klon von Palladio Roma
 Die vorgestellte Font-Konfiguration basiert auf [diesem Stackoverflow Thread](https://tex.stackexchange.com/a/114166), wo auch eine Vorschau betrachtet werden kann.
 **Die Fonts sind standardmäßig im Template aktiv.**
 
-Wer diese Fonts **nicht** verwenden möchte, kann in ``config.tex`` ``CFANCYFONTS`` auf ``0`` setzen, um den LaTex-Standard wiederherzustellen.
+Wer diese Fonts **nicht** verwenden möchte, kann in `config.tex` `CFANCYFONTS` auf `0` setzen, um den LaTex-Standard wiederherzustellen.
 
 # Zitate und Literaturverzeichnis
 
@@ -185,20 +189,21 @@ Beispiel:
 \supercite[S. 42]{mapi}
 ```
 
-***
+---
 
 <!-- todo: is this still a thing? the vscode extension does this pretty well without crying -->
+
 **Bei jeder Änderung in `literatur.bib` müssen folgende Schritte durchgeführt werden:**
 
 1. Das Projekt kompilieren (`pdflatex.exe -synctex=1 -interaction=nonstopmode "template".tex`)
 2. Biber ausführen (`biber.exe "template"`)
 3. Das Projekt 2x kompilieren
 
-***
+---
 
 > Werden die oben genannten Schritte nicht durchgeführt, kommt es zu Darstellungsfehlern bei Zitaten und dem Literaturverzeichnis.
 
-***
+---
 
 ## Tipps
 
@@ -267,7 +272,7 @@ welches einen Überblick über Bilder und ihre Optionen wie z.B. Positionierung 
 \dhgefigure[1]{2}[3]{4}{5}[6][7]
 ```
 
-kann mit bis zu sechs Argumenten aufgerufen werden:
+kann mit bis zu sieben Argumenten aufgerufen werden:
 
 1. **Optional** Float Position, standardmäßig `tbp`
 2. Relativer Bild-Pfad mit oder ohne Dateiendung (relativ zum `./assets/img` Ordner, kann in `template.tex` angepasst werden)
@@ -286,7 +291,7 @@ Beispiel:
 \dhgefigure{mapi_outgoing_illustration}{Absenden einer MAPI Nachricht}{fig:mapi}
 ```
 
-***
+---
 
 Der `dhgefigure` Befehl wird nun auch als Snippet für Visual-Studio-Code mitgeliefert.
 
@@ -400,7 +405,7 @@ Aufruf:
 
 Das Abkürzungsverzeichnis wird dann automatisch erstellt. Dabei ist zu beachten, dass unter Umständen bis zu vier Kompilierungen notwendig sind, wenn eine Abkürzung hinzugefügt oder entfernt wurde, damit das Verzeichnis korrekt erstellt wird.
 
-***
+---
 
 Für das Erstellen von Abkürzungen wird nun auch ein Snippet für Visual-Studio-Code mitgeliefert: `abk` / `dhgeabk`.
 
@@ -450,7 +455,7 @@ Das ist besonders für Code-Beispiele für den Anhang praktisch.
 4. `--shell-escape` flag im Compiler-Aufruf setzen
 5. [Minted Kurz-Anleitung](https://www.overleaf.com/learn/latex/Code_Highlighting_with_minted) oder [Minted Documentation](https://ctan.mc1.root.project-creative.net/macros/latex/contrib/minted/minted.pdf) lesen
 
-***
+---
 
 Bei Proxy-Problemen mit pip, kann auch das `Pygments.whl` file runtergeladen und dann mit pip installiert werden.
 [Pygments Download](https://pypi.org/project/Pygments/#files)
@@ -482,13 +487,13 @@ Eine Anleitung finden Sie in [diesem Artikel](https://www.overleaf.com/learn/lat
 # Kusche Mode
 
 Prof. Dr. Kusche stellt an Praxisarbeiten, die er betreut, andere Anforderungen als Prof. Dr. Dorendorf.
-Deshalb wurde der ``CKUSCHE``-Schalter in ``config.tex`` eingeführt: diesen auf ``1`` zu setzen überschreibt einige Standardverhalten vom Template:
+Deshalb wurde der `CKUSCHE`-Schalter in `config.tex` eingeführt: diesen auf `1` zu setzen überschreibt einige Standardverhalten vom Template:
 
 - es gibt ein Abstract
 - das Abstract wird nicht im Inhaltsverzeichnis geführt
 - das Abstract erscheint vor dem Inhaltsverzeichnis
 - das Abstract hat keine Kapitelnummer
-- Abbildungen, Tabellen, usw. werden zweistufig ``hauptkapitel.lfd`` nummeriert, mit Ausnahme von Anlagen, welche laufend nummeriert werden
+- Abbildungen, Tabellen, usw. werden zweistufig `hauptkapitel.lfd` nummeriert, mit Ausnahme von Anlagen, welche laufend nummeriert werden
 - Kapitel steht links im Footer / Header, analog zur Seitenzahl
 - Seitenzahlen vor dem Hauptteil sind römisch, ansonsten arabisch
 - Serifen-Font 12pt (Times New Roman geht, ist aber "langweilig")
@@ -507,7 +512,7 @@ Wir freuen uns natürlich sehr über Ideen, Fixes und Anregungen aus der Communi
 
 Das Template kann optional ein Abstract vor dem Inhaltsverzeichnis generieren.
 
-Um das zu aktivieren, muss in der ``config.tex`` der ``CHASABSTRACT``-Schalter auf ``1`` gesetzt werden.
+Um das zu aktivieren, muss in der `config.tex` der `CHASABSTRACT`-Schalter auf `1` gesetzt werden.
 
 # Absatztrenner
 
@@ -515,4 +520,4 @@ Absätze können mit Einrückungen oder vertikalen Abständen getrennt werden.
 Der LaTeX Standard sind Einrückungen, Abstände sind aus beliebten WYSIWYG-Editoren wie LibreOffice bekannt.
 An der Studienrichtung Technik der DHGE werden Abstände in Arbeiten bevorzugt, weshalb das die Voreinstellung des Templates ist.
 
-Wenn Einrückungen bevorzugt werden, kann das in der ``config.tex`` geändert werden, indem der ``CEINR``-Schalter auf ``1`` gesetzt wird.
+Wenn Einrückungen bevorzugt werden, kann das in der `config.tex` geändert werden, indem der `CEINR`-Schalter auf `1` gesetzt wird.

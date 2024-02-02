@@ -8,22 +8,24 @@
 \usepackage{enumitem}
 \usepackage[style=german]{csquotes}
 \usepackage[backend=biber,
-            style        = alphabetic,
-            citestyle    = components/alphabetic-ibid,
-            giveninits   = true,
-            ibidtracker  = true,
-            minbibnames  = 3,
-            minalphanames= 3]{biblatex}
+    style        = alphabetic,
+    citestyle    = components/alphabetic-ibid,
+    giveninits   = true,
+    ibidtracker  = true,
+    minbibnames  = 3,
+    minalphanames= 3]{biblatex}
 \usepackage[ngerman]{babel}
 \usepackage{footmisc}
 \usepackage{graphicx}
 \usepackage{caption}
 \usepackage{xparse}
 \usepackage{float}
-\usepackage{tocloft}
+\usepackage{tocloft} % indentation of table of contents
 \usepackage{totcount}
 \usepackage{chngcntr}
 \usepackage{icomma} % korrekte Darstellung von Kommas in Formeln
+\usepackage{pdfpages} % Für Deckblatt und Sperrvermerk
+\usepackage{titlesec}
 
 % schönere Fonts, aber optional. Zum deaktivieren CFANCYFONTS in config.tex auf 0 setzen
 \if\CFANCYFONTS 1
@@ -34,3 +36,6 @@
     \usepackage{lmodern}
 \fi
 
+\usepackage{uarial}
+\renewcommand*\familydefault{\sfdefault}
+\renewcommand{\normalsize}{\fontsize{11pt}{13pt}\selectfont}

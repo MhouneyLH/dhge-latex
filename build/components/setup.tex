@@ -24,32 +24,36 @@
 % TODO: sollte theoretisch keine Verwendung mehr haben
 % \widowpenalty10000
 % \clubpenalty10000
-
+\linespread{1.5}
 
 % INHALTSVERZEICHNIS SETUP
 \renewcommand{\contentsname}{Inhaltsverzeichnis}
 \cftsetindents{section}{0em}{4em}
-\cftsetindents{subsection}{0em}{4em}
-\cftsetindents{subsubsection}{0em}{4em}
+\cftsetindents{subsection}{1.5em}{4em}
+\cftsetindents{subsubsection}{3.5em}{4em}
 \setcounter{tocdepth}{3}
 \setcounter{secnumdepth}{5}
 
 
-% ABBILDUNGEN UND TABELLEN SETUP
+% ABBILDUNGEN, TABELLEN UND CODE_AUSZUGS SETUP
 \renewcommand{\listfigurename}{Abbildungsverzeichnis}
 \renewcommand{\listtablename}{Tabellenverzeichnis}
+\renewcommand{\lstlistlistingname}{Code-Auszugsverzeichnis}
 
 \addto{\captionsngerman}{
     \renewcommand*{\figurename}{Abb.}
     \renewcommand*{\tablename}{Tab.}
+    \renewcommand*{\lstlistingname}{Code-Auszug}
 }
 
 \addtocontents{lof}{\linespread{2}\selectfont}
 \addtocontents{lot}{\linespread{2}\selectfont}
+\addtocontents{lol}{\linespread{2}\selectfont}
 
 \makeatletter
 \renewcommand{\cftfigpresnum}{Abb. }
 \renewcommand{\cfttabpresnum}{Tab. }
+\def\l@lstlisting#1#2{\@dottedtocline{1}{0cm}{1cm}{Code #1}{#2}}
 
 \setlength{\cftfignumwidth}{2cm}
 \setlength{\cfttabnumwidth}{2cm}
@@ -63,6 +67,7 @@
 \if\CKUSCHE 1
     \counterwithin{figure}{section}
     \counterwithin{table}{section}
+    \counterwithin{lstlisting}{section}
 \fi
 
 
@@ -128,10 +133,13 @@
 % Conditionals um AbbildungVZ und TabellenVZ nur zu rendern, wenn sie nicht leer sind
 \newtotcounter{figCount}
 \newtotcounter{tabCount}
+\newtotcounter{listingsCount}
 \let\oldTabTOC=\table
 \let\oldFigTOC=\figure
+\let\oldListTOC=\lstinputlisting
 \renewcommand{\figure}{\stepcounter{figCount}\oldFigTOC}
 \renewcommand{\table}{\stepcounter{tabCount}\oldTabTOC}
+\renewcommand{\lstinputlisting}{\stepcounter{listingsCount}\oldListTOC}
 
 \newcommand{\conditionalLoF}{
     \ifnum\totvalue{figCount}>0
@@ -148,6 +156,15 @@
     \fi
 }
 
+
+
+\newcommand{\conditionalLoL}{
+    \ifnum\totvalue{listingsCount}>0
+        \addcontentsline{toc}{section}{\lstlistlistingname}
+        \lstlistoflistings
+        \cleardoublepage
+    \fi
+}
 
 % ANLAGENVERZEICHNIS SETUP
 % definiert eine neue Liste für das Anlagenverzeichnis

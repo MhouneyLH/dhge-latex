@@ -1,5 +1,5 @@
 % ROOT & PACKAGE SETUP
-\documentclass[a4paper, 12pt]{article}
+\documentclass[a4paper, 11pt]{article}
 
 % Präambel laden
 
@@ -42,130 +42,139 @@
 
 \begin{document}
 \pagenumbering{gobble}
-    % lade Deckblatt ohne Nummerierung
-    \input{build/components/deckblatt.tex}
+% lade Deckblatt ohne Nummerierung
+% \input{build/components/deckblatt.tex}
+\includepdf[pages=1]{../deckblatt_projektarbeit}
 
-    % Lade Sperrvermerk abhängig von der Einstellung in config.tex
-    \if\CSPERRVERMERK 1
-        \input{build/components/sperrvermerk.tex}
-    \fi
+% Lade Sperrvermerk abhängig von der Einstellung in config.tex
+\if\CSPERRVERMERK 1
+    \input{build/components/sperrvermerk.tex}
+\fi
 
-    % Lade Thesenblatt abhängig von der Einstellung in config.tex
-    \if\CARBEIT B
-        \input{../bachelor.tex}
-    \fi
+% Lade Thesenblatt abhängig von der Einstellung in config.tex
+\if\CARBEIT B
+    \input{../bachelor.tex}
+\fi
 
-    % Lade Abstract abhängig von der Einstellung in config.tex
-    \if\CHASABSTRACT 1
-        \section*{Abstract}
-        \input{../abstract.tex}
-        \newpage % Sections haben hier noch keinen automatischen Seitenumbruch
-    \fi
+% Lade Abstract abhängig von der Einstellung in config.tex
+\if\CHASABSTRACT 1
+    \section*{Abstract}
+    \input{../abstract.tex}
+    \newpage % Sections haben hier noch keinen automatischen Seitenumbruch
+\fi
 
-    % INHALTSVERZEICHNIS
-    \pagenumbering{Roman} \setcounter{page}{1}
-    \tableofcontents{\fancyfoot{}}
-    \if\CKUSCHE 1 % im Kusche Mode erscheinen die Anlagen im InhaltsVZ
-        \phantomsection
-        \listofanlagen
-    \fi
-    \cleardoublepage
-
-    % ABBILDUNGSVERZEICHNIS
+% INHALTSVERZEICHNIS
+\pagenumbering{Roman} \setcounter{page}{1}
+\tableofcontents{\fancyfoot{}}
+\if\CKUSCHE 1 % im Kusche Mode erscheinen die Anlagen im InhaltsVZ
     \phantomsection
-    \conditionalLoF
+    \listofanlagen
+\fi
+\cleardoublepage
 
-    % TABELLENVERZEICHNIS
-    \phantomsection
-    \conditionalLoT
+% ABBILDUNGSVERZEICHNIS
+\phantomsection
+\conditionalLoF
 
-    % ABKÜRZUNGSVERZEICHNIS
-    % wird nur dann generiert, wenn mindestens ein mal \ac oder ein verwandter Befehl aufgerufen wurde und damit nicht leer ist
-    \ifnum\totvalue{acro_num}>0
-        \printacronyms
-        \addcontentsline{toc}{section}{Abkürzungsverzeichnis}
+% TABELLENVERZEICHNIS
+\phantomsection
+\conditionalLoT
+
+% CODE-AUSZUGSVERZEICHNIS
+\phantomsection
+\conditionalLoL
+
+% ABKÜRZUNGSVERZEICHNIS
+% wird nur dann generiert, wenn mindestens ein mal \ac oder ein verwandter Befehl aufgerufen wurde und damit nicht leer ist
+\ifnum\totvalue{acro_num}>0
+\printacronyms
+\addcontentsline{toc}{section}{Abkürzungsverzeichnis}
+\cleardoublepage
+\fi
+
+\setcounter{savepage}{\arabic{page}}
+
+% MAIN CONTENT
+\pagenumbering{arabic}
+\input{main.tex}
+\cleardoublepage
+
+% LITERATURVERZEICHNIS
+% TODO Formatierung
+
+% Im Kusche-Mode wird arabische Nummerierung beibehalten
+\if\CKUSCHE 0
+    \pagenumbering{Roman} \setcounter{page}{\thesavepage}
+\fi
+
+% wenn keine Literatur verwendet (zitiert) wird, erstelle kein Literaturverzeichnis
+% im Kusche-Mode wird das LiteraturVZ später generiert
+\if\CKUSCHE 0
+    \ifnum\thetotalbibentries>0
+        \printbibliography[title=Literaturverzeichnis]
+        \addcontentsline{toc}{section}{Literaturverzeichnis}
         \cleardoublepage
     \fi
-
-    \setcounter{savepage}{\arabic{page}}
-
-    % MAIN CONTENT
-    \pagenumbering{arabic}
-    \input{main.tex}
-    \cleardoublepage
-
-    % LITERATURVERZEICHNIS
-    % TODO Formatierung
-
-    % Im Kusche-Mode wird arabische Nummerierung beibehalten
-    \if\CKUSCHE 0
-        \pagenumbering{Roman} \setcounter{page}{\thesavepage}
-    \fi
-
-    % wenn keine Literatur verwendet (zitiert) wird, erstelle kein Literaturverzeichnis
-    % im Kusche-Mode wird das LiteraturVZ später generiert
-    \if\CKUSCHE 0
-        \ifnum\thetotalbibentries>0
-            \printbibliography[title=Literaturverzeichnis]
-            \addcontentsline{toc}{section}{Literaturverzeichnis}
-            \cleardoublepage
-        \fi
-    \fi
+\fi
 
 
-    % TODO %ANLAGENVERZEICHNIS UND ANLAGEN
-    % erzeugt ein Anlagenkapitel und fügt es zum InhaltsVZ hinzu, insofern Anlagen existieren.
+% TODO %ANLAGENVERZEICHNIS UND ANLAGEN
+% erzeugt ein Anlagenkapitel und fügt es zum InhaltsVZ hinzu, insofern Anlagen existieren.
 
-    % \listofanlagen generiert ein Anlagenverzeichnis
-    % im Kusche-Modus wird kein Anlagenverzeichnis erzeugt, aber Anlagen im Inhaltsverzeichnis geführt
-    \ifnum\totvalue{anlagenentries}>0
-    \section*{Anlagen}
-    \addcontentsline{toc}{section}{Anlagen}
-    \if\CKUSCHE 0
-        \begin{spacing}{2}
-            \listofanlagen
-        \end{spacing}
+% \listofanlagen generiert ein Anlagenverzeichnis
+% im Kusche-Modus wird kein Anlagenverzeichnis erzeugt, aber Anlagen im Inhaltsverzeichnis geführt
+% \ifnum\totvalue{anlagenentries}>0
+\section*{Anlagen}
+\addcontentsline{toc}{section}{Anlagen}
+% \if\CKUSCHE 0
+%     \begin{spacing}{2}
+%         \listofanlagen
+%     \end{spacing}
+%     \cleardoublepage
+% \fi
+% \fi
+
+\if\CKUSCHE 1
+    % die Kapitel.lfd-Nummerierung wird im Kusche Mode ab hier wieder deaktiviert,
+    % da Anhänge mit Buchstaben nummeriert werden sollen (TODO: das funktioniert noch nicht, help wanted)
+    \counterwithout{figure}{section}
+    \counterwithout{table}{section}
+
+    % deaktiviere Kapitel in Fußzeile im Kusche Mode ab hier
+    \fancyfoot      [L]{}
+\fi
+
+% \renewFigTabCap % Verhalten von Figure und Table Environments sowie \caption wird verändert (TODO: wie genau? LG, ZPM)
+\captionsetup[figure]{list=no}
+\captionsetup[lstlisting]{list=no}
+\input{anlagen.tex}
+\captionsetup[figure]{list=yes}
+\captionsetup[lstlisting]{list=yes}
+\cleardoublepage
+
+% Im Kusche-Mode kommt das LiteraturVZ zuletzt
+\if\CKUSCHE 1
+    \ifnum\thetotalbibentries>0
+        \printbibliography[title=Literaturverzeichnis]
+        \addcontentsline{toc}{section}{Literaturverzeichnis}
         \cleardoublepage
     \fi
-    \fi
+\fi
 
-    \if\CKUSCHE 1
-        % die Kapitel.lfd-Nummerierung wird im Kusche Mode ab hier wieder deaktiviert,
-        % da Anhänge mit Buchstaben nummeriert werden sollen (TODO: das funktioniert noch nicht, help wanted)
-        \counterwithout{figure}{section}
-        \counterwithout{table}{section}
+% Einrückung und Abstand unabhängig von config.tex setzen: Ehrenwort und Freigabe korrekt formatiert
+\setlength{\parskip}{6pt}
+\setlength{\parindent}{0cm}
 
-        % deaktiviere Kapitel in Fußzeile im Kusche Mode ab hier
-        \fancyfoot      [L]{}
-    \fi
+% EHRENWÖRTLICHE ERKLÄRUNG
 
-    \renewFigTabCap % Verhalten von Figure und Table Environments sowie \caption wird verändert (TODO: wie genau? LG, ZPM)
-    \input{anlagen.tex}
-    \cleardoublepage
+\pagestyle{empty}
+\pagenumbering{gobble}
+\section*{Ehrenwörtliche Erklärung}
+\addcontentsline{toc}{section}{Ehrenwörtliche Erklärung}
+\input{build/components/ehrenwort.tex}
 
-    % Im Kusche-Mode kommt das LiteraturVZ zuletzt
-    \if\CKUSCHE 1
-        \ifnum\thetotalbibentries>0
-            \printbibliography[title=Literaturverzeichnis]
-            \addcontentsline{toc}{section}{Literaturverzeichnis}
-            \cleardoublepage
-        \fi
-    \fi
-    
-    % Einrückung und Abstand unabhängig von config.tex setzen: Ehrenwort und Freigabe korrekt formatiert
-    \setlength{\parskip}{6pt}
-    \setlength{\parindent}{0cm}
-
-    % EHRENWÖRTLICHE ERKLÄRUNG
-
-    \pagestyle{empty}
-    \pagenumbering{gobble}
-    \section*{Ehrenwörtliche Erklärung}
-    \addcontentsline{toc}{section}{Ehrenwörtliche Erklärung}
-    \input{build/components/ehrenwort.tex}
-
-    \if\CARBEIT B
-        \input{components/freigabe.tex}
-    \fi
+\if\CARBEIT B
+    \input{components/freigabe.tex}
+\fi
 
 \end{document}
