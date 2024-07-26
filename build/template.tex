@@ -1,5 +1,5 @@
 % ROOT & PACKAGE SETUP
-\documentclass[a4paper, 11pt]{article}
+\documentclass[a4paper, 10pt]{article}
 
 % Präambel laden
 
@@ -44,7 +44,7 @@
 \pagenumbering{gobble}
 % lade Deckblatt ohne Nummerierung
 % \input{build/components/deckblatt.tex}
-\includepdf[pages=1]{../deckblatt_projektarbeit}
+\includepdf[pages=1]{../deckblatt}
 
 % Lade Sperrvermerk abhängig von der Einstellung in config.tex
 \if\CSPERRVERMERK 1
@@ -147,9 +147,11 @@
 % \renewFigTabCap % Verhalten von Figure und Table Environments sowie \caption wird verändert (TODO: wie genau? LG, ZPM)
 \captionsetup[figure]{list=no}
 \captionsetup[lstlisting]{list=no}
+\captionsetup[table]{list=no}
 \input{anlagen.tex}
 \captionsetup[figure]{list=yes}
 \captionsetup[lstlisting]{list=yes}
+\captionsetup[table]{list=yes}
 \cleardoublepage
 
 % Im Kusche-Mode kommt das LiteraturVZ zuletzt

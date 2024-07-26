@@ -1,0 +1,1 @@
+{"rule":"GERMAN_SPELLER_RULE","sentence":"^\\QIm Rahmen der Praxisphase im sechsten Semester an der Dualen Hochschule Gera-Eisenach (DHGE) besteht die Aufgabe darin, einen vorhandenen Software-Prototyp einer Simulationsumgebung des Projektes Feldschwarm® ÖkoSystem zu erweitern.\\E$"}

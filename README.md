@@ -1,6 +1,11 @@
 # DHGE-LaTeX [![Build Status](https://github.com/RvNovae/dhge-latex/actions/workflows/ci-dhge-latex.yaml/badge.svg)](https://github.com/RvNovae/dhge-latex/actions/workflows/ci-dhge-latex.yaml) <!-- omit in toc -->
 
-Inoffizielles LaTeX-Template für Projektarbeiten für Technik-Studiengänge an der Dualen Hochschule Gera Eisenach
+Inoffizielles LaTeX-Template für Projektarbeiten für Technik-Studiengänge an der Dualen Hochschule Gera Eisenach.
+Was macht dieser Fork anders? / Was beinhaltet dieser Fork?
+- konfigurierte Code-Auszüge
+- Anlagenverzeichnis
+- dhgesvgfigure für Vektorgrafiken (Achtung: Inkscape muss installiert und im PATH vorhanden sein! -> zumindest, wenn man SVGs verwenden möchte)
+- Skript, um eine Citavi-Formattierung zu fixen
 
 # Inhaltsverzeichnis <!-- omit in toc -->
 

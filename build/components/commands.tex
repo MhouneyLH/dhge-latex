@@ -18,6 +18,26 @@
     \end{figure}
 }
 
+\DeclareDocumentCommand{\dhgesvgfigure}{O{tbp} m O{width=\textwidth, angle=0} m m O{} O{}}
+{
+    \begin{figure}[#1]
+        \begin{center}
+            \includesvg[#3]{#2}
+        \end{center}
+        \caption{#4}
+        \label{#5}
+
+        \ifx #6\empty \else
+            \ifx #7\empty
+                {\small \protect \textbf{Quelle:} \cite{#6}}
+                \else
+                {\small \protect \textbf{Quelle:} \cite[#7]{#6}}
+            \fi
+        \fi
+
+    \end{figure}
+}
+
 % SubSubSubSection
 \newcommand{\dhgeparagraph}[1]{\paragraph{#1}\mbox{}\\}
 

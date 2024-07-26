@@ -4,18 +4,20 @@
 \usepackage{listings} % z. B. für Codebeispiele
 \usepackage{xcolor} % Definition von Farben
 
-\definecolor{codegreen}{rgb}{0,0.6,0}
-\definecolor{codegray}{rgb}{0.5,0.5,0.5}
-\definecolor{codepurple}{rgb}{0.58,0,0.82}
-\definecolor{backcolor}{rgb}{0.95,0.95,0.92}
+\definecolor{greencomments}{rgb}{0,0.5,0}
+\definecolor{graylinenumbers}{rgb}{0.5,0.5,0.5}
+\definecolor{background}{rgb}{0.95,0.95,0.92}
 
-\lstdefinestyle{coding_style}{
-    backgroundcolor=\color{backcolor},
-    commentstyle=\color{codegreen},
-    keywordstyle=\color{blue},
-    numberstyle=\tiny\color{codegray},
-    stringstyle=\color{codepurple},
+% language specific styles
+% \lstdefinelanguage{your_custom_language} { ... }
+
+% Set the basic listing style for all languages
+\lstset{
     basicstyle=\ttfamily\footnotesize,
+    backgroundcolor=\color{background},
+    commentstyle=\color{greencomments},
+    numberstyle=\tiny\color{graylinenumbers},
+    escapeinside={(*@}{@*)}, % Allows LaTeX commands within code: (*@ here is your commented out code then @*)
     breakatwhitespace=false,
     breaklines=true,
     captionpos=b,
@@ -28,15 +30,18 @@
     tabsize=2,
     frame=single,
     framexleftmargin=15pt,
-    xleftmargin=15pt
+    xleftmargin=15pt,
 }
-
-% Set the listing style
-\lstset{style=coding_style}
 
 \usepackage{pgfplots} % Diagramme
 \usepackage{multirow} % bessere Tabellen
 \usepackage{array} % Enhances the array and tabular environments for creating tables.
 \usepackage[toc,page]{appendix}
 \usepackage{appendix}
-\usepackage{amsmath} % for central dots
+\usepackage{amsmath} % for central dots and svg figures
+\usepackage[inkscapeformat=png]{svg} % showing svgs -> see dhgesvgfigure
+
+% sometimes just use biber.exe "template" again to update the bibliography -> sometimes it just does not load the correct entries after modifying this file :(
+\usepackage{longtable} % for tables that span multiple pages
+\usepackage[bottom]{footmisc} % for fixed footnotes at the bottom of the page
+\usepackage{parskip} % for no indent and space between paragraphs

@@ -141,6 +141,8 @@
 \renewcommand{\table}{\stepcounter{tabCount}\oldTabTOC}
 \renewcommand{\lstinputlisting}{\stepcounter{listingsCount}\oldListTOC}
 
+\renewcommand{\arraystretch}{1.5} % Zeilenhöhe von Tabellen
+
 \newcommand{\conditionalLoF}{
     \ifnum\totvalue{figCount}>0
         \addcontentsline{toc}{section}{\listfigurename}
@@ -148,6 +150,7 @@
         \cleardoublepage
     \fi
 }
+
 \newcommand{\conditionalLoT}{
     \ifnum\totvalue{tabCount}>0
         \addcontentsline{toc}{section}{\listtablename}
@@ -155,8 +158,6 @@
         \cleardoublepage
     \fi
 }
-
-
 
 \newcommand{\conditionalLoL}{
     \ifnum\totvalue{listingsCount}>0
@@ -249,7 +250,7 @@
             \acropages
             {\acrotranslate{page}\nobreakspace}%
             {\acrotranslate{pages}\nobreakspace}%
-            \vspace{10pt}
+            % this was here without parskip enabled: \vspace{10pt}
             \tabularnewline
         }%
     }%
